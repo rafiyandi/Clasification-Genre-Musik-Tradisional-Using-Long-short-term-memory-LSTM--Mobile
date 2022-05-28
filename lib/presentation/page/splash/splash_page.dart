@@ -6,6 +6,8 @@ import 'package:genremusik/shared/theme.dart';
 // import 'package:shamo/providers/product_provider.dart';
 
 class SplashPage extends StatefulWidget {
+  const SplashPage({Key? key}) : super(key: key);
+
   @override
   _SplashPageState createState() => _SplashPageState();
 }
@@ -13,9 +15,8 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    // TODO: implement initState
-
-    Timer(Duration(seconds: 3), () => Navigator.pushNamed(context, '/home'));
+    Timer(const Duration(seconds: 3),
+        () => Navigator.pushNamed(context, '/home'));
 
     // getInit();
 
@@ -33,12 +34,12 @@ class _SplashPageState extends State<SplashPage> {
       backgroundColor: backgroundColor1,
       body: Center(
         child: Container(
-          width: 130,
-          height: 150,
-          decoration: BoxDecoration(
+          width: 110,
+          height: 130,
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                'assets/image_splash.png',
+                'assets/icon/icon_headset.png',
               ),
             ),
           ),
