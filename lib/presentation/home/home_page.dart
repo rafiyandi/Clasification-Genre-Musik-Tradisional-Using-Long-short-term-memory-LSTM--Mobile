@@ -3,9 +3,10 @@ import 'package:genremusik/presentation/home/widgets/musik_cart.dart';
 import 'package:genremusik/presentation/home/widgets/musik_tile.dart';
 import 'package:genremusik/shared/theme.dart';
 import 'package:genremusik/widgets/appBar/appbar_title.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -18,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     // UserModel user = authProvider.user;
     // ProductProvider productProvider = Provider.of<ProductProvider>(context);
 
-    Widget popularProductsTitle() {
+    Widget musikTradisionalTitle() {
       return Container(
         margin: EdgeInsets.only(
           top: defaultMargin,
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           right: defaultMargin,
         ),
         child: Text(
-          'Popular Products',
+          'Musik Tradisional',
           style: primaryTextStyle.copyWith(
             fontSize: 22,
             fontWeight: semiBold,
@@ -35,9 +36,9 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget popularProducts() {
+    Widget musikTradisional() {
       return Container(
-        margin: EdgeInsets.only(top: 14),
+        margin: const EdgeInsets.only(top: 14),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -52,7 +53,10 @@ class _HomePageState extends State<HomePage> {
                 //         )
                 //         .toList() ??
                 //     [],
-                children: [
+                children: const [
+                  MusikCart(),
+                  MusikCart(),
+                  MusikCart(),
                   MusikCart(),
                 ],
               ),
@@ -62,7 +66,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget newArrivalsTitle() {
+    Widget lainnyaTitle() {
       return Container(
         margin: EdgeInsets.only(
           top: defaultMargin,
@@ -79,9 +83,9 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget newArrivals() {
+    Widget lainnya() {
       return Container(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           top: 14,
         ),
         child: Column(
@@ -90,7 +94,11 @@ class _HomePageState extends State<HomePage> {
           //       (product) => MusikTile(product),
           //     )
           //     .toList(),
-          children: [
+          children: const [
+            MusikTile(),
+            MusikTile(),
+            MusikTile(),
+            MusikTile(),
             MusikTile(),
           ],
         ),
@@ -100,10 +108,10 @@ class _HomePageState extends State<HomePage> {
     return ListView(
       children: [
         appBarTitle("Musik Tradisional"),
-        popularProductsTitle(),
-        popularProducts(),
-        newArrivalsTitle(),
-        newArrivals(),
+        musikTradisionalTitle(),
+        musikTradisional(),
+        lainnyaTitle(),
+        lainnya(),
       ],
     );
   }

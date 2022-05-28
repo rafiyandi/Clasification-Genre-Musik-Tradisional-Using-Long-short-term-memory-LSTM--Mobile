@@ -5,6 +5,8 @@ import 'package:genremusik/shared/theme.dart';
 // import 'package:shamo/providers/page_provider.dart';
 
 class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
+
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -28,11 +30,11 @@ class _MainPageState extends State<MainPage> {
 
     Widget customBottomNav() {
       return ClipRRect(
-        borderRadius: BorderRadius.vertical(
+        borderRadius: const BorderRadius.vertical(
           top: Radius.circular(30),
         ),
         child: BottomAppBar(
-          shape: CircularNotchedRectangle(),
+          shape: const CircularNotchedRectangle(),
           notchMargin: 12,
           clipBehavior: Clip.antiAlias,
           child: BottomNavigationBar(
@@ -48,22 +50,26 @@ class _MainPageState extends State<MainPage> {
             items: [
               BottomNavigationBarItem(
                 icon: Container(
-                  margin: EdgeInsets.only(top: 20, bottom: 10),
+                  margin: const EdgeInsets.only(top: 20, bottom: 10),
                   child: Image.asset(
                     "assets/icon/icon_home.png",
                     width: 21,
-                    color: currentIndex == 0 ? primaryColor : Color(0xff808191),
+                    color: currentIndex == 0
+                        ? primaryColor
+                        : const Color(0xff808191),
                   ),
                 ),
                 label: '',
               ),
               BottomNavigationBarItem(
                 icon: Container(
-                  margin: EdgeInsets.only(top: 20, bottom: 10),
+                  margin: const EdgeInsets.only(top: 20, bottom: 10),
                   child: Image.asset(
                     "assets/icon/icon_headset.png",
                     width: 20,
-                    color: currentIndex == 1 ? primaryColor : Color(0xff808191),
+                    color: currentIndex == 1
+                        ? primaryColor
+                        : const Color(0xff808191),
                   ),
                 ),
                 label: '',
@@ -77,11 +83,11 @@ class _MainPageState extends State<MainPage> {
     Widget body() {
       switch (currentIndex) {
         case 0:
-          return HomePage();
+          return const HomePage();
         case 1:
-          return ClasifikasiGenre();
+          return const ClasifikasiGenre();
         default:
-          return HomePage();
+          return const HomePage();
       }
     }
 

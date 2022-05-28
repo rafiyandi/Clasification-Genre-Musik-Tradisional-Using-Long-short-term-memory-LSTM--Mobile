@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:genremusik/presentation/page/detailmusik/detail_musik.dart';
 import 'package:genremusik/shared/theme.dart';
 // import 'package:shamo/pages/product_page.dart';
 
 class MusikCart extends StatelessWidget {
+  const MusikCart({Key? key}) : super(key: key);
+
   // MusikCart(this.product);
   // final ProductModel product;
 
@@ -10,12 +13,12 @@ class MusikCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => ProductPage(product),
-        //   ),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailMusicPage(),
+          ),
+        );
       },
       child: Container(
         width: 215,
@@ -25,14 +28,11 @@ class MusikCart extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Color(0xffECEDEF),
+          color: const Color(0xffECEDEF),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 30,
-            ),
             // Image.network(
             //   product.galleries[0].url,
             //   width: 215,
@@ -40,11 +40,15 @@ class MusikCart extends StatelessWidget {
             //   fit: BoxFit.cover,
             // ),
 
-            Image.asset(
-              'assets/image/image_tarian2.png',
-              width: 215,
-              height: 150,
-              fit: BoxFit.cover,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image.asset(
+                'assets/image/image_tarian2.png',
+                width: double.infinity,
+                height: 150,
+                fit: BoxFit.cover,
+                alignment: Alignment.topCenter,
+              ),
             ),
             // CachedNetworkImage(
             //   imageUrl: widget.product.galleries[0].url,
@@ -52,7 +56,7 @@ class MusikCart extends StatelessWidget {
             //   height: 150,
             // ),
             Container(
-              margin: EdgeInsets.symmetric(
+              margin: const EdgeInsets.symmetric(
                 horizontal: 20,
               ),
               child: Column(
@@ -70,7 +74,7 @@ class MusikCart extends StatelessWidget {
                       fontSize: 12,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 6,
                   ),
                   // Text(
@@ -91,7 +95,7 @@ class MusikCart extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 6,
                   ),
                   Text(
@@ -108,6 +112,5 @@ class MusikCart extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

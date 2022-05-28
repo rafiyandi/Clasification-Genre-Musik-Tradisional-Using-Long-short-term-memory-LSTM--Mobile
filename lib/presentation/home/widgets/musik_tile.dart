@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:genremusik/presentation/page/detailmusik/detail_musik.dart';
 import 'package:genremusik/shared/theme.dart';
 
 class MusikTile extends StatelessWidget {
+  const MusikTile({Key? key}) : super(key: key);
+
   // final ProductModel product;
   // MusikTile(this.product);
 
@@ -10,12 +13,12 @@ class MusikTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => ProductPage(product),
-        //   ),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailMusicPage(),
+          ),
+        );
       },
       child: Container(
         margin: EdgeInsets.only(
@@ -42,7 +45,7 @@ class MusikTile extends StatelessWidget {
                   height: 120,
                   fit: BoxFit.cover,
                 )),
-            SizedBox(
+            const SizedBox(
               width: 12,
             ),
             Expanded(
@@ -52,7 +55,7 @@ class MusikTile extends StatelessWidget {
                 Text("Melayu",
                     style: secondaryTextStyle.copyWith(
                         fontSize: 12, fontWeight: regular)),
-                SizedBox(
+                const SizedBox(
                   height: 6,
                 ),
                 Text(
@@ -60,7 +63,7 @@ class MusikTile extends StatelessWidget {
                   style: primaryTextStyle.copyWith(
                       fontSize: 16, fontWeight: semiBold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 6,
                 ),
                 Text(
