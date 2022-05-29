@@ -15,7 +15,7 @@ class AppWidget extends StatelessWidget {
         // '/sign-in': (context) => SplashPage(),
         '/home': (context) => const MainPage(),
         '/genre': (context) => const ClasifikasiGenre(),
-        '/detail-musik': (context) => DetailMusicPage(),
+        '/detail-musik': (context) => const DetailMusicPage(),
       },
     );
   }

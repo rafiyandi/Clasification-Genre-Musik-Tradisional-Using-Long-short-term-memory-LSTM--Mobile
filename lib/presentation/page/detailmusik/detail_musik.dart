@@ -1,10 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:genremusik/shared/theme.dart';
-import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class DetailMusicPage extends StatefulWidget {
+  const DetailMusicPage({Key? key}) : super(key: key);
+
   @override
   _DetailMusicPageState createState() => _DetailMusicPageState();
   // final ProductModel product;
@@ -37,76 +38,46 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
     // WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
     // CartProvider cartProvider = Provider.of<CartProvider>(context);
 
-    // Widget indicator(int index) {
-    //   return Container(
-    //     width: currentIndex == index ? 16 : 4,
-    //     height: 4,
-    //     margin: EdgeInsets.symmetric(horizontal: 2),
-    //     decoration: BoxDecoration(
-    //         borderRadius: BorderRadius.circular(10),
-    //         color: currentIndex == index ? primaryColor : Color(0xffc4c4c4)),
-    //   );
-    // }
+    Widget textTitleContent(String title, String content) {
+      return Container(
+        margin: EdgeInsets.only(
+            top: defaultMargin, right: defaultMargin, left: defaultMargin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: primaryTextStyle.copyWith(fontWeight: medium),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            Text(
+              content,
+              style: subtitleTextStyle.copyWith(fontWeight: semiBold),
+              textAlign: TextAlign.justify,
+            )
+          ],
+        ),
+      );
+    }
 
-// Widget indicator(){
-//   return AnimatedSmoothIndicator(activeIndex: activeIndex, count: count)
-// }
+    Widget buildIndicator() {
+      return AnimatedSmoothIndicator(
+          activeIndex: currentIndex,
+          count: images.length,
+          effect: ExpandingDotsEffect(
+              dotWidth: 7,
+              dotHeight: 7,
+              expansionFactor: 3,
+              activeDotColor: primaryColor,
+              dotColor: const Color(0xffc4c4c4)));
+    }
 
     Widget buildImage(String urlImage, int index) {
-      return Container(
-        color: primaryColor,
-        child: Image.asset(
-          urlImage,
-          fit: BoxFit.cover,
-        ),
-      );
-    }
-
-    Widget familiarShoesCard(String imageUrl) {
-      return Container(
-        width: 54,
-        height: 54,
-        margin: EdgeInsets.only(
-          right: 16,
-        ),
-        decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage(imageUrl)),
-            borderRadius: BorderRadius.circular(6)),
-      );
-    }
-
-    Widget header() {
-      int index = -1;
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CarouselSlider.builder(
-            options: CarouselOptions(
-              height: 400,
-              viewportFraction: 1,
-              initialPage: 0,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  currentIndex = index;
-                });
-              },
-            ),
-            itemCount: images.length,
-            itemBuilder: (context, index, realIndex) {
-              final urlImage = images[index];
-              return buildImage(urlImage, index);
-            },
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          // Row(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     children: images.map((e) {
-          //       index++;
-          //       return indicator(index);
-          //     }).toList())
-        ],
+      return Image.asset(
+        urlImage,
+        fit: BoxFit.cover,
       );
     }
 
@@ -114,10 +85,10 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
       int index = -1;
       return Container(
         width: double.infinity,
-        margin: EdgeInsets.only(top: 17),
+        margin: const EdgeInsets.only(top: 17),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(24),
+            borderRadius: const BorderRadius.vertical(
+              top: const Radius.circular(24),
             ),
             color: backgroundColor1),
 
@@ -151,171 +122,70 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
                       ],
                     ),
                   ),
-
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     // setState(() {
-                  //     //   isWishlist = !isWishlist;
-                  //     // });
-                  //     // wishlistProvider.setProduct(widget.product);
-
-                  //     if (wishlistProvider.isWishlist(widget.product)) {
-                  //       ScaffoldMessenger.of(context).showSnackBar(
-                  //         SnackBar(
-                  //           backgroundColor: secondaryColor,
-                  //           content: Text(
-                  //             'Has been added to the Wishlist',
-                  //             textAlign: TextAlign.center,
-                  //           ),
-                  //         ),
-                  //       );
-                  //     } else {
-                  //       ScaffoldMessenger.of(context).showSnackBar(
-                  //         SnackBar(
-                  //           backgroundColor: alertColor,
-                  //           content: Text(
-                  //             'Has been removed from the Wishlist',
-                  //             textAlign: TextAlign.center,
-                  //           ),
-                  //         ),
-                  //       );
-                  //     }
-                  //   },
-                  //   child: Image.asset(
-                  //     wishlistProvider.isWishlist(widget.product)
-
-                  //         // isWishlist
-                  //         ? 'assets/button_wishlist_blue.png'
-                  //         : 'assets/button_wishlist.png',
-                  //     width: 46,
-                  //   ),
-                  // ),
                 ],
               ),
             ),
-
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-              width: double.infinity,
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  color: backgroundColor2,
-                  borderRadius: BorderRadius.circular(4)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Price starts from",
-                    style: primaryTextStyle,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text("\$${70}",
-                      style: priceTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: semiBold,
-                      ))
-                ],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                  top: defaultMargin,
-                  right: defaultMargin,
-                  left: defaultMargin),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Description",
-                    style: primaryTextStyle.copyWith(fontWeight: medium),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    "widget.product.description",
-                    style: subtitleTextStyle.copyWith(fontWeight: semiBold),
-                    textAlign: TextAlign.justify,
-                  )
-                ],
-              ),
-            ),
-            // Container(
-            //   width: double.infinity,
-            //   margin: EdgeInsets.only(top: defaultMargin),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Padding(
-            //         padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-            //         child: Text(
-            //           "Fimiliar Shoes",
-            //           style: primaryTextStyle.copyWith(fontWeight: medium),
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         height: 12,
-            //       ),
-            //       SingleChildScrollView(
-            //         scrollDirection: Axis.horizontal,
-            //         child: Row(
-            //           children: familiarShoes.map((image) {
-            //             index++;
-            //             return Container(
-            //               margin: EdgeInsets.only(
-            //                   left: index == 0 ? defaultMargin : 0),
-            //               child: familiarShoesCard(image),
-            //             );
-            //           }).toList(),
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            // ),
-            //NOTE:BUTTON
-            // Container(
-            //   margin: EdgeInsets.all(defaultMargin),
-            //   width: double.infinity,
-            //   child: Row(
-            //     children: [
-            //       Container(
-            //         height: 54,
-            //         width: 54,
-            //         decoration: BoxDecoration(
-            //           image: DecorationImage(
-            //               image: AssetImage("assets/button_chat.png")),
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         width: 16,
-            //       ),
-            //       Expanded(
-            //         child: Container(
-            //             height: 54,
-            //             child: TextButton(
-            //               onPressed: () {
-            //                 // cartProvider.addCart(widget.product);
-            //                 showSuccessDialog();
-            //               },
-            //               style: TextButton.styleFrom(
-            //                   backgroundColor: primaryColor,
-            //                   shape: RoundedRectangleBorder(
-            //                       borderRadius: BorderRadius.circular(12))),
-            //               child: Text(
-            //                 "Add to Cart",
-            //                 style: primaryTextStyle.copyWith(
-            //                     fontSize: 16, fontWeight: semiBold),
-            //               ),
-            //             )),
-            //       )
-            //     ],
-            //   ),
-            // )
+            textTitleContent("Pencipta", "Sudirman"),
+            textTitleContent("Penyanyi", "Supratman"),
+            textTitleContent("Tarian Tradisional", "Rara"),
+            textTitleContent("DescripTion",
+                "Musik Keroncong (atau Kroncong) adalah jenis musik khas Indonesia yang sangat populer. Musik Keroncong adalah sebuah musik khas dari turunan dan kontemporesasi dari musik-musik budaya luar yang akhirnya dimodifikasi berkembang pesat di Indonesia. Hingga akhirnya Musik Keroncong dideskripsikan sebagai jenis musik hasil perpaduan Budaya Barat dan Budaya Timur."),
           ],
         ),
+      );
+    }
+
+    Widget header() {
+      // int index = -1;
+      return Stack(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CarouselSlider.builder(
+                options: CarouselOptions(
+                  height: 400,
+                  viewportFraction: 1,
+                  // enlargeCenterPage: true,
+                  enlargeStrategy: CenterPageEnlargeStrategy.height,
+                  enableInfiniteScroll: false,
+                  initialPage: 0,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  },
+                ),
+                itemCount: images.length,
+                itemBuilder: (context, index, realIndex) {
+                  final urlImage = images[index];
+
+                  return buildImage(urlImage, index);
+                },
+              ),
+            ],
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios_new),
+            color: blackColor,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 289, bottom: 17),
+                child: buildIndicator(),
+              ),
+              content(),
+            ],
+          ),
+          const SizedBox(
+            height: 306,
+          ),
+        ],
       );
     }
 
@@ -323,7 +193,7 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
       return Container(
         width: double.infinity,
         height: 375,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage(
                 'assets/image/image_tarian2.png',

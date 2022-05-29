@@ -35,7 +35,7 @@ class ClasifikasiGenre extends StatelessWidget {
                 "assets/icon/icon_headset.png",
                 width: 80,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 35,
               ),
               Text(
@@ -43,7 +43,7 @@ class ClasifikasiGenre extends StatelessWidget {
                 style:
                     primaryTextStyle.copyWith(fontSize: 16, fontWeight: medium),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 38,
               ),
               uploadButton(),

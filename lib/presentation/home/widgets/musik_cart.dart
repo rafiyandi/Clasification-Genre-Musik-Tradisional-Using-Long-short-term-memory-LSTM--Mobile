@@ -16,7 +16,7 @@ class MusikCart extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DetailMusicPage(),
+            builder: (context) => const DetailMusicPage(),
           ),
         );
       },
