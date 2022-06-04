@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:genremusik/presentation/page/detailmusik/detail_musik.dart';
+import 'package:genremusik/presentation/page/home/detail_musik.dart';
 import 'package:genremusik/shared/theme.dart';
 // import 'package:shamo/pages/product_page.dart';
 

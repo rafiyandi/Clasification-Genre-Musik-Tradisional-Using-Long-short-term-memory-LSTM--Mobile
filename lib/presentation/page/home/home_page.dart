@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:genremusik/presentation/home/widgets/musik_cart.dart';
-import 'package:genremusik/presentation/home/widgets/musik_tile.dart';
+import 'package:genremusik/presentation/page/home/widgets/musik_cart.dart';
+import 'package:genremusik/presentation/page/home/widgets/musik_tile.dart';
 import 'package:genremusik/shared/theme.dart';
 import 'package:genremusik/widgets/appBar/appbar_title.dart';
 

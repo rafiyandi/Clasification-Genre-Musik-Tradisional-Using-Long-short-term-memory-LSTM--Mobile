@@ -82,7 +82,7 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
     }
 
     Widget content() {
-      int index = -1;
+      // int index = -1;
       return Container(
         width: double.infinity,
         margin: const EdgeInsets.only(top: 17),
@@ -130,6 +130,9 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
             textTitleContent("Tarian Tradisional", "Rara"),
             textTitleContent("DescripTion",
                 "Musik Keroncong (atau Kroncong) adalah jenis musik khas Indonesia yang sangat populer. Musik Keroncong adalah sebuah musik khas dari turunan dan kontemporesasi dari musik-musik budaya luar yang akhirnya dimodifikasi berkembang pesat di Indonesia. Hingga akhirnya Musik Keroncong dideskripsikan sebagai jenis musik hasil perpaduan Budaya Barat dan Budaya Timur."),
+            SizedBox(
+              height: 30,
+            ),
           ],
         ),
       );

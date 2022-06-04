@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:genremusik/provider/music_provider.dart';
 import 'package:genremusik/services/music_services.dart';
 import 'package:genremusik/shared/theme.dart';
-// import 'package:provider/provider.dart';
-// import 'package:shamo/providers/product_provider.dart';
+import 'package:provider/provider.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -17,13 +17,14 @@ class _SplashPageState extends State<SplashPage> {
   MusicServices musicServices = MusicServices();
   @override
   void initState() {
-    Timer(const Duration(seconds: 3),
-        () => Navigator.pushNamed(context, '/home'));
-    musicServices.getMusics();
-
-    // getInit();
+    getInit();
 
     super.initState();
+  }
+
+  getInit() async {
+    await Provider.of<MusicProvider>(context, listen: false).getMusics();
+    Navigator.pushNamed(context, '/home');
   }
 
   // getInit() async {
