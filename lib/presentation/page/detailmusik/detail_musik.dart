@@ -147,8 +147,9 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
                   height: 400,
                   viewportFraction: 1,
                   // enlargeCenterPage: true,
-                  enlargeStrategy: CenterPageEnlargeStrategy.height,
-                  enableInfiniteScroll: false,
+                  autoPlay: true,
+                  // enlargeStrategy: CenterPageEnlargeStrategy.height,
+                  enableInfiniteScroll: true,
                   initialPage: 0,
                   onPageChanged: (index, reason) {
                     setState(() {

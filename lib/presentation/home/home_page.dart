@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
           right: defaultMargin,
         ),
         child: Text(
-          'New Arrivals',
+          'Lainnya',
           style: primaryTextStyle.copyWith(
             fontSize: 22,
             fontWeight: semiBold,
