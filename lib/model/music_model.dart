@@ -8,7 +8,7 @@ class MusicModel {
   late String penyanyi;
   late String tarian;
   late CategoryModel category;
-  late List<GalleryModel> galleries = [];
+  late List<GalleryModel> galleries;
   late DateTime updatedAt;
   late DateTime createdAt;
 

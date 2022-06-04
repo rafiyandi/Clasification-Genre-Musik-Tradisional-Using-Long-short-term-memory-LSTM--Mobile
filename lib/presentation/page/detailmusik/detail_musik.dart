@@ -49,7 +49,7 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
               title,
               style: primaryTextStyle.copyWith(fontWeight: medium),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             Text(
@@ -170,7 +170,7 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back_ios_new),
+            icon: const Icon(Icons.arrow_back_ios_new),
             color: blackColor,
           ),
           Column(
