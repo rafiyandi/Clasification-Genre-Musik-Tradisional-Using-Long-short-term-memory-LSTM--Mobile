@@ -4,7 +4,7 @@ import 'package:genremusik/model/music_model.dart';
 import 'package:http/http.dart' as http;
 
 class MusicServices {
-  String baseUrl = 'http://localhost:8000/api';
+  String baseUrl = 'http://10.140.165.128:8000/api';
 
   Future<List<MusicModel>> getMusics() async {
     var url = '$baseUrl/music';
@@ -15,7 +15,7 @@ class MusicServices {
 
     print(response.body);
 
-    if (response.statusCode == 20) {
+    if (response.statusCode == 200) {
       List data = jsonDecode(response.body)['data']['data'];
       List<MusicModel> musics = [];
 
