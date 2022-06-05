@@ -1,15 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:genremusik/model/music_model.dart';
 import 'package:genremusik/shared/theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class DetailMusicPage extends StatefulWidget {
-  const DetailMusicPage({Key? key}) : super(key: key);
-
   @override
   _DetailMusicPageState createState() => _DetailMusicPageState();
-  // final ProductModel product;
-  // DetailMusicPage(this.product);
+  const DetailMusicPage(this.music, {Key? key}) : super(key: key);
+  final MusicModel music;
 }
 
 class _DetailMusicPageState extends State<DetailMusicPage> {

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:genremusik/model/music_model.dart';
 import 'package:genremusik/presentation/page/home/detail_musik.dart';
 import 'package:genremusik/shared/theme.dart';
 // import 'package:shamo/pages/product_page.dart';
 
 class MusikCart extends StatelessWidget {
-  const MusikCart({Key? key}) : super(key: key);
+  const MusikCart(this.music, {Key? key}) : super(key: key);
 
-  // MusikCart(this.product);
-  // final ProductModel product;
+  final MusicModel music;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class MusikCart extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const DetailMusicPage(),
+            builder: (context) => DetailMusicPage(music),
           ),
         );
       },

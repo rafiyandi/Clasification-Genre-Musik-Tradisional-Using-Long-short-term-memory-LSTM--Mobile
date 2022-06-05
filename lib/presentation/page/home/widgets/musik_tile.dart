@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:genremusik/model/music_model.dart';
 import 'package:genremusik/presentation/page/home/detail_musik.dart';
 import 'package:genremusik/shared/theme.dart';
 
 class MusikTile extends StatelessWidget {
-  const MusikTile({Key? key}) : super(key: key);
-
-  // final ProductModel product;
-  // MusikTile(this.product);
+  MusikTile(this.music);
+  final MusicModel music;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,7 @@ class MusikTile extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DetailMusicPage(),
+            builder: (context) => DetailMusicPage(music),
           ),
         );
       },

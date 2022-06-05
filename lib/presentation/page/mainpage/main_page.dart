@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:genremusik/presentation/page/clasifikasi/clasificasi_genre.dart';
 import 'package:genremusik/presentation/page/home/home_page.dart';
+import 'package:genremusik/presentation/page/home/second_home_page.dart';
 import 'package:genremusik/shared/theme.dart';
 // import 'package:shamo/providers/page_provider.dart';
 
@@ -85,7 +86,8 @@ class _MainPageState extends State<MainPage> {
         case 0:
           return const HomePage();
         case 1:
-          return const ClasifikasiGenre();
+          // return const ClasifikasiGenre();
+          return const SecondHomePage();
         default:
           return const HomePage();
       }
