@@ -1,10 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:genremusik/presentation/page/home/widgets/musik_tile.dart';
+// import 'package:genremusik/presentation/page/home/widgets/musik_tile.dart';
 import 'package:genremusik/presentation/page/home/widgets/second_musik_cart.dart';
+import 'package:genremusik/provider/music_provider.dart';
 import 'package:genremusik/shared/theme.dart';
 import 'package:genremusik/widgets/appBar/appbar_title.dart';
 import 'package:genremusik/widgets/text/title_text.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class SecondHomePage extends StatefulWidget {
@@ -26,10 +29,12 @@ class _SecondHomePageState extends State<SecondHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    MusicProvider musicProvider = Provider.of<MusicProvider>(context);
+
     Widget buildIndicator() {
       return AnimatedSmoothIndicator(
           activeIndex: currentIndex,
-          count: images.length,
+          count: musicProvider.musics[0].galleries.length,
           effect: ExpandingDotsEffect(
               dotWidth: 7,
               dotHeight: 7,
@@ -38,16 +43,22 @@ class _SecondHomePageState extends State<SecondHomePage> {
               dotColor: const Color(0xffc4c4c4)));
     }
 
-    Widget buildImage(String urlImage, int index) {
-      return Container(
+    Widget buildImage(String urlImage) {
+      // return Container(
+      //   width: double.infinity,
+      //   decoration: BoxDecoration(
+      //     borderRadius: BorderRadius.circular(15),
+      //     image: DecorationImage(
+      //         image: NetworkImage(urlImage),
+      //         fit: BoxFit.cover,
+      //         alignment: Alignment.topCenter),
+      //   ),
+      // );
+      return CachedNetworkImage(
+        imageUrl: urlImage,
         width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          image: DecorationImage(
-              image: AssetImage(urlImage),
-              fit: BoxFit.cover,
-              alignment: Alignment.topCenter),
-        ),
+        fit: BoxFit.cover,
+        alignment: Alignment.topCenter,
       );
 
       // Image.asset(
@@ -77,11 +88,13 @@ class _SecondHomePageState extends State<SecondHomePage> {
                     });
                   },
                 ),
-                itemCount: images.length,
+                itemCount: musicProvider.musics[0].galleries.length,
                 itemBuilder: (context, index, realIndex) {
-                  final urlImage = images[index];
+                  final urlImage = musicProvider.musics[0].galleries[index].url;
+                  print(index.toString() + " = " + realIndex.toString());
+                  print("ini index " + urlImage.toString());
 
-                  return buildImage(urlImage, index);
+                  return buildImage(urlImage);
                 },
               ),
             ],
@@ -100,7 +113,7 @@ class _SecondHomePageState extends State<SecondHomePage> {
       return Container(
         margin: EdgeInsets.only(top: 39),
         child: Text(
-          'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ',
+          musicProvider.musics[0].description,
           style: whiteTextStyle.copyWith(
             fontSize: 12,
           ),
@@ -113,6 +126,7 @@ class _SecondHomePageState extends State<SecondHomePage> {
       // shrinkWrap: true,
       controller: controller,
       children: [
+        appBarTitle("Musik Tradisional"),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
@@ -121,12 +135,20 @@ class _SecondHomePageState extends State<SecondHomePage> {
               SizedBox(height: 37),
               header(),
               SizedBox(height: 26),
-              Center(child: titleText("Ranup Lampuan")),
+              Center(child: titleText(musicProvider.musics[0].name)),
               content(),
               SizedBox(height: 49),
               titleText("Lainnya"),
               SizedBox(height: 28),
-              scecondMusikCart(context, controller)
+              SecondMusikCart(controller, musicProvider.musics[0]),
+
+              // Column(
+              //   children: musicProvider.musics
+              //       .map(
+              //         (music) => SecondMusikCart(controller, music),
+              //       )
+              //       .toList(),
+              // )
             ],
           ),
         )
