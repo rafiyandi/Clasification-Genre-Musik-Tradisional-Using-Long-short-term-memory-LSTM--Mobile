@@ -17,14 +17,10 @@ class _SplashPageState extends State<SplashPage> {
   MusicServices musicServices = MusicServices();
   @override
   void initState() {
-    getInit();
-
     super.initState();
-  }
 
-  getInit() async {
-    await Provider.of<MusicProvider>(context, listen: false).getMusics();
-    Navigator.pushNamed(context, '/home');
+    Timer(Duration(seconds: 3),
+        () => Navigator.pushReplacementNamed(context, '/home'));
   }
 
   // getInit() async {

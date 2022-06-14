@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 // import 'package:genremusik/presentation/page/home/widgets/musik_tile.dart';
 import 'package:genremusik/presentation/page/home/widgets/second_musik_cart.dart';
+import 'package:genremusik/presentation/page/home/widgets/shimer/shimer_home_page.dart';
 import 'package:genremusik/provider/music_provider.dart';
 import 'package:genremusik/shared/theme.dart';
 import 'package:genremusik/widgets/appBar/appbar_title.dart';
@@ -26,14 +27,71 @@ class _SecondHomePageState extends State<SecondHomePage> {
     "assets/image/image_tarian4.jpg",
   ];
   int currentIndex = 0;
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    getMusik();
+    super.initState();
+  }
+
+  Future<void> getMusik() async {
+    // await Provider.of<MusicProvider>(context, listen: false).getMusics();
+    MusicProvider musicProvider = Provider.of(context, listen: false);
+    await musicProvider.getMusics();
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     MusicProvider musicProvider = Provider.of<MusicProvider>(context);
 
+    Widget buildShimerHomePage() {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ShimerHomePage.rectangleSLider(
+            height: 200,
+          ),
+          SizedBox(height: 26),
+          Center(
+            child: ShimerHomePage.titleText(
+              width: MediaQuery.of(context).size.width * 0.6,
+              height: 24,
+            ),
+          ),
+          SizedBox(height: 39),
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: 10,
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: ShimerHomePage.contentText(
+                  width: MediaQuery.of(context).size.width * 0.75,
+                  height: 16.7,
+                  shapeBorder: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(3))),
+            ),
+          ),
+          SizedBox(height: 40),
+          ShimerHomePage.contentText(
+              width: MediaQuery.of(context).size.width * 0.40,
+              height: 16.7,
+              shapeBorder: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(3))),
+          // SizedBox(height: 30),
+          // ShimerHomePage.boxContentBottom(height: 150),
+        ],
+      );
+    }
+
     Widget buildIndicator() {
       return AnimatedSmoothIndicator(
           activeIndex: currentIndex,
+          // count: musicProvider.musics[0].galleries.isEmpty
+          // ? images.length
           count: musicProvider.musics[0].galleries.length,
           effect: ExpandingDotsEffect(
               dotWidth: 7,
@@ -44,27 +102,21 @@ class _SecondHomePageState extends State<SecondHomePage> {
     }
 
     Widget buildImage(String urlImage) {
-      // return Container(
-      //   width: double.infinity,
-      //   decoration: BoxDecoration(
-      //     borderRadius: BorderRadius.circular(15),
-      //     image: DecorationImage(
-      //         image: NetworkImage(urlImage),
-      //         fit: BoxFit.cover,
-      //         alignment: Alignment.topCenter),
-      //   ),
-      // );
       return CachedNetworkImage(
         imageUrl: urlImage,
         width: double.infinity,
         fit: BoxFit.cover,
         alignment: Alignment.topCenter,
       );
+    }
 
-      // Image.asset(
-      //   urlImage,
-      //   fit: BoxFit.cover,
-      // );
+    Widget buildImageNotFound(
+      String urlImage,
+    ) {
+      return Image.asset(
+        urlImage,
+        fit: BoxFit.cover,
+      );
     }
 
     Widget header() {
@@ -89,12 +141,17 @@ class _SecondHomePageState extends State<SecondHomePage> {
                   },
                 ),
                 itemCount: musicProvider.musics[0].galleries.length,
+                // ? images.length
+                // : musicProvider.musics[0].galleries.length,
                 itemBuilder: (context, index, realIndex) {
                   final urlImage = musicProvider.musics[0].galleries[index].url;
-                  print(index.toString() + " = " + realIndex.toString());
-                  print("ini index " + urlImage.toString());
+                  // final imageFound = images[index];
+                  // print(index.toString() + " = " + realIndex.toString());
+                  // print("ini index " + urlImage.toString());
 
-                  return buildImage(urlImage);
+                  return isLoading
+                      ? buildShimerHomePage()
+                      : buildImage(urlImage);
                 },
               ),
             ],
@@ -123,52 +180,50 @@ class _SecondHomePageState extends State<SecondHomePage> {
     }
 
     return ListView(
-      // shrinkWrap: true,
       controller: controller,
       children: [
         appBarTitle("Musik Tradisional"),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 37),
-              header(),
-              SizedBox(height: 26),
-              Center(child: titleText(musicProvider.musics[0].name)),
-              content(),
-              SizedBox(height: 49),
-              titleText("Lainnya"),
-              SizedBox(height: 28),
-              SecondMusikCart(controller, musicProvider.musics[0]),
-
-              // Column(
-              //   children: musicProvider.musics
-              //       .map(
-              //         (music) => SecondMusikCart(controller, music),
-              //       )
-              //       .toList(),
-              // )
+              buildShimerHomePage(),
             ],
           ),
         )
       ],
     );
-    // Container(
-    //     margin: EdgeInsets.symmetric(horizontal: 20),
-    //     child: Column(
-    //       crossAxisAlignment: CrossAxisAlignment.start,
-    //       children: [
-    //         SizedBox(height: 37),
-    //         header(),
-    //         SizedBox(height: 26),
-    //         titleText("Ranup Lampuan"),
-    //         content(),
-    //         SizedBox(height: 49),
-    //         titleText("Lainnya"),
-    //         SizedBox(height: 28),
-    //         SecondMusikCart(),
-    //       ],
-    //     )),
+
+    // return ListView(
+    //   controller: controller,
+    //   children: [
+    //     appBarTitle("Musik Tradisional"),
+    //     Container(
+    //       margin: EdgeInsets.symmetric(horizontal: 20),
+    //       child: Column(
+    //         crossAxisAlignment: CrossAxisAlignment.start,
+    //         children: [
+    //           SizedBox(height: 37),
+    //           header(),
+    //           SizedBox(height: 26),
+    //           Center(child: titleText(musicProvider.musics[0].name)),
+    //           content(),
+    //           SizedBox(height: 49),
+    //           titleText("Lainnya"),
+    //           SizedBox(height: 28),
+    //           SecondMusikCart(controller, musicProvider.musics),
+
+    //           // Column(
+    //           //   children: musicProvider.musics
+    //           //       .map(
+    //           //         (music) => SecondMusikCart(controller, music),
+    //           //       )
+    //           //       .toList(),
+    //           // )
+    //         ],
+    //       ),
+    //     )
+    //   ],
+    // );
   }
 }

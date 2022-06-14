@@ -11,9 +11,9 @@ import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
 // final MusicModel music;
 
 class SecondMusikCart extends StatelessWidget {
-  SecondMusikCart(this.controller, this.musik);
+  SecondMusikCart(this.controller, this.musik, {Key? key}) : super(key: key);
   ScrollController controller = ScrollController();
-  MusicModel musik;
+  final List<MusicModel> musik;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class SecondMusikCart extends StatelessWidget {
       staggeredTileBuilder: (context) => StaggeredTile.count(2, 3),
       // staggeredTileBuilder: (index) => StaggeredTile.fit(2),
       crossAxisCount: 4,
-      itemCount: 4,
+      itemCount: musik.length,
       crossAxisSpacing: 16,
       mainAxisSpacing: 16,
       itemBuilder: (context, index) {
