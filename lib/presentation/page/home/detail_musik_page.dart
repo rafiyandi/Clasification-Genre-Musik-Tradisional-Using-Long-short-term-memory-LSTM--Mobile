@@ -64,7 +64,7 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
     Widget buildIndicator() {
       return AnimatedSmoothIndicator(
           activeIndex: currentIndex,
-          count: images.length,
+          count: widget.music.galleries.length,
           effect: ExpandingDotsEffect(
               dotWidth: 7,
               dotHeight: 7,
@@ -74,7 +74,7 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
     }
 
     Widget buildImage(String urlImage, int index) {
-      return Image.asset(
+      return Image.network(
         urlImage,
         fit: BoxFit.cover,
       );
@@ -110,25 +110,31 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Keroncong",
+                          widget.music.category.name,
+                          style: secondaryTextStyle.copyWith(fontSize: 12),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          "Nama Musik",
                           style: primaryTextStyle.copyWith(
                               fontSize: 18, fontWeight: semiBold),
                         ),
                         Text(
-                          "Melayu",
+                          widget.music.name,
                           style: secondaryTextStyle.copyWith(fontSize: 12),
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ],
               ),
             ),
-            textTitleContent("Pencipta", "Sudirman"),
-            textTitleContent("Penyanyi", "Supratman"),
-            textTitleContent("Tarian Tradisional", "Rara"),
-            textTitleContent("DescripTion",
-                "Musik Keroncong (atau Kroncong) adalah jenis musik khas Indonesia yang sangat populer. Musik Keroncong adalah sebuah musik khas dari turunan dan kontemporesasi dari musik-musik budaya luar yang akhirnya dimodifikasi berkembang pesat di Indonesia. Hingga akhirnya Musik Keroncong dideskripsikan sebagai jenis musik hasil perpaduan Budaya Barat dan Budaya Timur."),
+            textTitleContent("Pencipta", widget.music.pencipta),
+            textTitleContent("Penyanyi", widget.music.penyanyi),
+            textTitleContent("Tarian Tradisional", widget.music.tarian),
+            textTitleContent("DescripTion", widget.music.description),
             SizedBox(
               height: 30,
             ),
@@ -159,9 +165,9 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
                     });
                   },
                 ),
-                itemCount: images.length,
+                itemCount: widget.music.galleries.length,
                 itemBuilder: (context, index, realIndex) {
-                  final urlImage = images[index];
+                  final urlImage = widget.music.galleries[index].url;
 
                   return buildImage(urlImage, index);
                 },
@@ -192,25 +198,10 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
       );
     }
 
-    Widget secondHeadr() {
-      return Container(
-        width: double.infinity,
-        height: 375,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(
-                'assets/image/image_tarian2.png',
-              ),
-              fit: BoxFit.cover),
-        ),
-      );
-    }
-
     return Scaffold(
       backgroundColor: backgroundColor6,
       body: ListView(
         children: [
-          // secondHeadr()
           header(),
           // content(),
         ],

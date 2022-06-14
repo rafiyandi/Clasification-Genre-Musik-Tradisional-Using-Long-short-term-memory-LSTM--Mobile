@@ -18,9 +18,16 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      Future.delayed(const Duration(seconds: 10), () {
+        getInit();
+      });
+    });
+  }
 
-    Timer(Duration(seconds: 3),
-        () => Navigator.pushReplacementNamed(context, '/home'));
+  getInit() async {
+    await Provider.of<MusicProvider>(context, listen: false).getMusics();
+    Navigator.pushNamed(context, '/home');
   }
 
   // getInit() async {

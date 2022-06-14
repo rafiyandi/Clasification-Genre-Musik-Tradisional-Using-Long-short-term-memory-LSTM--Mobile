@@ -4,6 +4,7 @@ import 'package:genremusik/model/gallery_model.dart';
 class MusicModel {
   late int id;
   late String name;
+  late String daerah;
   late String pencipta;
   late String penyanyi;
   late String tarian;
@@ -16,6 +17,7 @@ class MusicModel {
   MusicModel(
       this.id,
       this.name,
+      this.daerah,
       this.pencipta,
       this.penyanyi,
       this.description,
@@ -28,6 +30,7 @@ class MusicModel {
   MusicModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    daerah = json['daerah'];
     pencipta = json['pencipta'];
     penyanyi = json['penyanyi'];
     tarian = json['tarian'];
@@ -44,6 +47,7 @@ class MusicModel {
     return {
       'id': id,
       'name': name,
+      'daerah': daerah,
       'pencipta': pencipta,
       'penyanyi': penyanyi,
       'description': description,

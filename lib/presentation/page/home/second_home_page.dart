@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-// import 'package:genremusik/presentation/page/home/widgets/musik_tile.dart';
 import 'package:genremusik/presentation/page/home/widgets/second_musik_cart.dart';
 import 'package:genremusik/presentation/page/home/widgets/shimer/shimer_home_page.dart';
 import 'package:genremusik/provider/music_provider.dart';
@@ -10,6 +9,8 @@ import 'package:genremusik/widgets/appBar/appbar_title.dart';
 import 'package:genremusik/widgets/text/title_text.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
+import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
 
 class SecondHomePage extends StatefulWidget {
   const SecondHomePage({Key? key}) : super(key: key);
@@ -27,17 +28,25 @@ class _SecondHomePageState extends State<SecondHomePage> {
     "assets/image/image_tarian4.jpg",
   ];
   int currentIndex = 0;
-  bool isLoading = true;
+  bool isLoading = false;
 
   @override
   void initState() {
-    getMusik();
     super.initState();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      Future.delayed(const Duration(), () {
+        getMusik();
+      });
+    });
   }
 
   Future<void> getMusik() async {
-    // await Provider.of<MusicProvider>(context, listen: false).getMusics();
+    await Provider.of<MusicProvider>(context, listen: false).getMusics();
+    setState(() {
+      isLoading = true;
+    });
     MusicProvider musicProvider = Provider.of(context, listen: false);
+
     await musicProvider.getMusics();
     setState(() {
       isLoading = false;
@@ -147,11 +156,9 @@ class _SecondHomePageState extends State<SecondHomePage> {
                   final urlImage = musicProvider.musics[0].galleries[index].url;
                   // final imageFound = images[index];
                   // print(index.toString() + " = " + realIndex.toString());
-                  // print("ini index " + urlImage.toString());
+                  print("ini index " + urlImage.toString());
 
-                  return isLoading
-                      ? buildShimerHomePage()
-                      : buildImage(urlImage);
+                  return buildImage(urlImage);
                 },
               ),
             ],
@@ -179,50 +186,60 @@ class _SecondHomePageState extends State<SecondHomePage> {
       );
     }
 
+    Widget buildBody() {
+      return Container(
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 37),
+            header(),
+            SizedBox(height: 26),
+            Center(child: titleText(musicProvider.musics[0].name)),
+            content(),
+            SizedBox(height: 49),
+            titleText("Lainnya"),
+            SizedBox(height: 28),
+            // SecondMusikCart(controller, musicProvider.musics),
+            StaggeredGridView.countBuilder(
+              controller: controller,
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              staggeredTileBuilder: (context) => StaggeredTile.count(2, 3),
+              // staggeredTileBuilder: (index) => StaggeredTile.fit(2),
+              crossAxisCount: 4,
+              itemCount: musicProvider.musics.length,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              itemBuilder: (context, index) {
+                return SecondMusikCart(controller, musicProvider.musics[index]);
+              },
+            )
+
+            // Column(
+            //   children: musicProvider.musics
+            //       .map(
+            //         (musik) => SecondMusikCart(controller, musik),
+            //       )
+            //       .toList(),
+            // )
+          ],
+        ),
+      );
+    }
+
     return ListView(
       controller: controller,
       children: [
         appBarTitle("Musik Tradisional"),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              buildShimerHomePage(),
-            ],
-          ),
-        )
+        isLoading ? buildShimerHomePage() : buildBody(),
       ],
     );
 
     // return ListView(
     //   controller: controller,
     //   children: [
-    //     appBarTitle("Musik Tradisional"),
-    //     Container(
-    //       margin: EdgeInsets.symmetric(horizontal: 20),
-    //       child: Column(
-    //         crossAxisAlignment: CrossAxisAlignment.start,
-    //         children: [
-    //           SizedBox(height: 37),
-    //           header(),
-    //           SizedBox(height: 26),
-    //           Center(child: titleText(musicProvider.musics[0].name)),
-    //           content(),
-    //           SizedBox(height: 49),
-    //           titleText("Lainnya"),
-    //           SizedBox(height: 28),
-    //           SecondMusikCart(controller, musicProvider.musics),
 
-    //           // Column(
-    //           //   children: musicProvider.musics
-    //           //       .map(
-    //           //         (music) => SecondMusikCart(controller, music),
-    //           //       )
-    //           //       .toList(),
-    //           // )
-    //         ],
-    //       ),
-    //     )
     //   ],
     // );
   }

@@ -12,16 +12,16 @@ class MusicServices {
   Future<List<MusicModel>> getMusics() async {
     var url = '$baseUrl/music';
 
-    var headers = {'Content-Type': 'aplication/json'};
-    var response = await http.get(Uri.parse(url), headers: headers);
-    // var response = await dio.get(url,
-    //     options: Options(headers: {
-    //       "Content-Type": "application/json",
-    //     }));
-    print(response.body);
+    // var headers = {'Content-Type': 'aplication/json'};
+    // var response = await http.get(Uri.parse(url), headers: headers);
+    var response = await dio.get(url,
+        options: Options(headers: {
+          "Content-Type": "application/json",
+        }));
+    print(response.data);
 
     if (response.statusCode == 200) {
-      List data = jsonDecode(response.body)['data']['data'];
+      List data = response.data['data']['data'];
       List<MusicModel> musics = [];
 
       for (var item in data) {

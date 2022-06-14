@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:genremusik/model/music_model.dart';
-import 'package:genremusik/presentation/page/home/detail_musik.dart';
+import 'package:genremusik/presentation/page/home/detail_musik_page.dart';
 import 'package:genremusik/shared/theme.dart';
 
 class MusikTile extends StatelessWidget {
