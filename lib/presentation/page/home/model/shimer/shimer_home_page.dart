@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimerHomePage extends StatelessWidget {
-  ShimerHomePage.rectangleSLider({
+  const ShimerHomePage.rectangleSLider({
     this.width = double.infinity,
     required this.height,
   }) : this.shapeBorder = const RoundedRectangleBorder(
@@ -11,18 +11,18 @@ class ShimerHomePage extends StatelessWidget {
           topRight: Radius.circular(12),
         ));
 
-  ShimerHomePage.titleText({
+  const ShimerHomePage.titleText({
     this.width = double.infinity,
     required this.height,
   }) : this.shapeBorder = const RoundedRectangleBorder();
 
-  ShimerHomePage.contentText({
+  const ShimerHomePage.contentText({
     this.width = double.infinity,
     required this.height,
     this.shapeBorder = const CircleBorder(),
   });
 
-  ShimerHomePage.boxContentBottom({
+  const ShimerHomePage.boxContentBottom({
     this.width = double.infinity,
     required this.height,
   }) : this.shapeBorder = const RoundedRectangleBorder(

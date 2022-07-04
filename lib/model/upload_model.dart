@@ -1,18 +1,20 @@
-// class UploadModel {
-//   late int id;
-//   late String file;
+import 'dart:io';
 
-//   UploadModel(this.file, this.id);
+class UploadModel {
+  int? id;
+  File? file;
 
-//   UploadModel.fromJson(Map<String, dynamic> json) {
-//     id = json['id'];
-//     file = json['file'];
-//   }
+  UploadModel(this.file, this.id);
 
-//   Map<String, dynamic> toJson() {
-//     return {
-//       'id': id,
-//       'file': file,
-//     };
-//   }
-// }
+  UploadModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    file = json['file'] != null ? File(json['file']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'file': file,
+    };
+  }
+}

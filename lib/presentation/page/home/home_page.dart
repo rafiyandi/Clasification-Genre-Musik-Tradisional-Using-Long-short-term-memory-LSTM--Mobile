@@ -175,7 +175,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget buildBody() {
+    Widget buildBody(BuildContext context) {
       return Container(
         margin: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -194,7 +194,10 @@ class _HomePageState extends State<HomePage> {
               controller: controller,
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              staggeredTileBuilder: (context) => StaggeredTile.count(2, 3),
+              staggeredTileBuilder: (integer) =>
+                  MediaQuery.of(context).orientation == Orientation.portrait
+                      ? StaggeredTile.count(2, 3)
+                      : StaggeredTile.count(2, 1.4),
               // staggeredTileBuilder: (index) => StaggeredTile.fit(2),
               crossAxisCount: 4,
               itemCount: musicProvider.musics.length,
@@ -213,7 +216,7 @@ class _HomePageState extends State<HomePage> {
       controller: controller,
       children: [
         appBarTitle("Musik Tradisional"),
-        isLoading ? buildShimerHomePage() : buildBody(),
+        isLoading ? buildShimerHomePage() : buildBody(context),
       ],
     );
   }

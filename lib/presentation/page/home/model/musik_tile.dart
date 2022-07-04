@@ -4,7 +4,7 @@ import 'package:genremusik/presentation/page/home/detail_musik_page.dart';
 import 'package:genremusik/shared/theme.dart';
 
 class MusikTile extends StatelessWidget {
-  MusikTile(this.music);
+  const MusikTile(this.music);
   final MusicModel music;
 
   @override
