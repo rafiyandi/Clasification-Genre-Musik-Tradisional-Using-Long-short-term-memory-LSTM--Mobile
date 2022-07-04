@@ -7,13 +7,13 @@ import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
 // import 'package:shamo/pages/product_page.dart';
 
-// const SecondMusikCart(this.music, {Key? key}) : super(key: key);
+// const MusikCart(this.music, {Key? key}) : super(key: key);
 
 // final MusicModel music;
 
-class SecondMusikCart extends StatelessWidget {
+class MusikCart extends StatelessWidget {
   final MusicModel musik;
-  SecondMusikCart(this.controller, this.musik, {Key? key}) : super(key: key);
+  MusikCart(this.controller, this.musik, {Key? key}) : super(key: key);
   ScrollController controller = ScrollController();
 
   @override

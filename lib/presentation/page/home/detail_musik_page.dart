@@ -12,23 +12,6 @@ class DetailMusicPage extends StatefulWidget {
 }
 
 class _DetailMusicPageState extends State<DetailMusicPage> {
-  final images = [
-    "assets/image/image_tarian1.jpg",
-    "assets/image/image_tarian2.png",
-    "assets/image/image_tarian3.png",
-    "assets/image/image_tarian4.jpg",
-  ];
-
-  // List familiarShoes = [
-  //   "assets/image_shoes1.png",
-  //   "assets/image_shoes2.png",
-  //   "assets/image_shoes3.png",
-  //   "assets/image_shoes4.png",
-  //   "assets/image_shoes5.png",
-  //   "assets/image_shoes6.png",
-  //   "assets/image_shoes7.png",
-  // ];
-
   int currentIndex = 0;
   // bool isWishlist = false;
 
@@ -131,9 +114,9 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
                 ],
               ),
             ),
-            textTitleContent("Pencipta", widget.music.pencipta),
+            textTitleContent("Daerah", widget.music.daerah),
             textTitleContent("Penyanyi", widget.music.penyanyi),
-            textTitleContent("Tarian Tradisional", widget.music.tarian),
+            textTitleContent("Alat Musik", widget.music.alatMusik),
             textTitleContent("DescripTion", widget.music.description),
             SizedBox(
               height: 30,

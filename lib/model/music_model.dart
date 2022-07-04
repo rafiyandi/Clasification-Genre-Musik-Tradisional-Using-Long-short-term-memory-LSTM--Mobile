@@ -5,9 +5,8 @@ class MusicModel {
   late int id;
   late String name;
   late String daerah;
-  late String pencipta;
+  late String alatMusik;
   late String penyanyi;
-  late String tarian;
   late String description;
   late CategoryModel category;
   late List<GalleryModel> galleries;
@@ -18,12 +17,11 @@ class MusicModel {
       this.id,
       this.name,
       this.daerah,
-      this.pencipta,
+      this.alatMusik,
       this.penyanyi,
       this.description,
       this.category,
       this.galleries,
-      this.tarian,
       this.createdAt,
       this.updatedAt);
 
@@ -31,9 +29,8 @@ class MusicModel {
     id = json['id'];
     name = json['name'];
     daerah = json['daerah'];
-    pencipta = json['pencipta'];
+    alatMusik = json['alat_musik'];
     penyanyi = json['penyanyi'];
-    tarian = json['tarian'];
     description = json['description'];
     category = CategoryModel.fromJson(json['category']);
     galleries = json['galleries']
@@ -48,12 +45,11 @@ class MusicModel {
       'id': id,
       'name': name,
       'daerah': daerah,
-      'pencipta': pencipta,
+      'alat_musik': alatMusik,
       'penyanyi': penyanyi,
       'description': description,
       'category': category,
       'galleries': galleries.map((gallery) => gallery.toJson()).toList(),
-      'tarian': tarian,
       'created_at': createdAt.toString(),
       'updated_at': updatedAt.toString(),
     };

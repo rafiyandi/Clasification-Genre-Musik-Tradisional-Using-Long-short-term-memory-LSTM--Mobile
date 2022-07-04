@@ -18,11 +18,11 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      Future.delayed(const Duration(seconds: 10), () {
-        getInit();
-      });
-    });
+    // WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    // Future.delayed(const Duration(seconds: 3), () {
+    getInit();
+    // });
+    // });
   }
 
   getInit() async {
