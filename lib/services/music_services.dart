@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:genremusik/model/music_model.dart';
 
 class MusicServices {
-  String baseUrl = 'http://192.168.7.80:8000/api';
+  String baseUrl = 'http://192.168.135.80:8000/api';
 
   Dio dio = Dio();
 

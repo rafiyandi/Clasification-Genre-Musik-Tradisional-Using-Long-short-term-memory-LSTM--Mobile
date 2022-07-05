@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:genremusik/presentation/page/clasifikasi/clasification_genre.dart';
 import 'package:genremusik/presentation/page/home/home_page.dart';
-import 'package:genremusik/presentation/page/home/home_page.dart';
 import 'package:genremusik/shared/theme.dart';
 // import 'package:shamo/providers/page_provider.dart';
 

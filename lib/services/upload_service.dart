@@ -7,7 +7,7 @@ import 'package:genremusik/model/upload_model.dart';
 // typedef void OnUploadProgressCallback(int sentBytes, int totalBytes);
 class UploadService {
   // OnUploadProgressCallback? onUploadProgressCallback;
-  String baseUrl = 'http://192.168.7.80:8000/api';
+  String baseUrl = 'http://192.168.135.80:8000/api';
   // var header = {
   //   "Content-Type": "application/json",
   // };

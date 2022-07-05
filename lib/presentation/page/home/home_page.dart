@@ -29,10 +29,10 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      Future.delayed(const Duration(), () {
-        getMusik();
-      });
+      // Future.delayed(const Duration(), () {
+      getMusik();
     });
+    // });
   }
 
   Future<void> getMusik() async {
