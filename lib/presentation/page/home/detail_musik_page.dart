@@ -70,7 +70,7 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
         margin: const EdgeInsets.only(top: 17),
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.vertical(
-              top: const Radius.circular(24),
+              top: Radius.circular(24),
             ),
             color: backgroundColor1),
 
@@ -96,7 +96,7 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
                           widget.music.category.name,
                           style: secondaryTextStyle.copyWith(fontSize: 12),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         Text(
@@ -118,7 +118,7 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
             textTitleContent("Penyanyi", widget.music.penyanyi),
             textTitleContent("Alat Musik", widget.music.alatMusik),
             textTitleContent("DescripTion", widget.music.description),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
           ],

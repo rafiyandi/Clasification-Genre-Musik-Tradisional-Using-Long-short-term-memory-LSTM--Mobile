@@ -13,7 +13,7 @@ class ButtonLoading extends StatelessWidget {
   Widget build(BuildContext context) => ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: priceColor,
-          minimumSize: Size.fromHeight(50),
+          minimumSize: const Size.fromHeight(50),
         ),
         child: buildContent(),
         onPressed: () {},
@@ -23,8 +23,8 @@ class ButtonLoading extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 28),
-          SizedBox(width: 16),
-          CircularProgressIndicator(
+          const SizedBox(width: 16),
+          const CircularProgressIndicator(
             strokeWidth: 2,
             valueColor: AlwaysStoppedAnimation(
               Colors.grey,

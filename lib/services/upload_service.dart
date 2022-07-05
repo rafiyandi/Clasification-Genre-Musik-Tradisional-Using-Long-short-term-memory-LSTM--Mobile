@@ -7,10 +7,10 @@ import 'package:genremusik/model/upload_model.dart';
 // typedef void OnUploadProgressCallback(int sentBytes, int totalBytes);
 class UploadService {
   // OnUploadProgressCallback? onUploadProgressCallback;
-  String baseUrl = 'http://192.168.82.80:8000/api';
-  var header = {
-    "Content-Type": "application/json",
-  };
+  String baseUrl = 'http://192.168.7.80:8000/api';
+  // var header = {
+  //   "Content-Type": "application/json",
+  // };
   int? sent;
   int? total;
   Dio dio = Dio();

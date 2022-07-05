@@ -34,11 +34,11 @@ class _ClasificationGenreState extends State<ClasificationGenre> {
             'Upload Berhasil',
             textAlign: TextAlign.center,
           ),
-          backgroundColor: const Color(0xff6C5ECF),
+          backgroundColor: Color(0xff6C5ECF),
         ));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: const Text(
+          content: Text(
             'Upload Gagal',
             textAlign: TextAlign.center,
           ),

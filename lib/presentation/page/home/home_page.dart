@@ -56,17 +56,17 @@ class _HomePageState extends State<HomePage> {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ShimerHomePage.rectangleSLider(
+          const ShimerHomePage.rectangleSLider(
             height: 200,
           ),
-          SizedBox(height: 26),
+          const SizedBox(height: 26),
           Center(
             child: ShimerHomePage.titleText(
               width: MediaQuery.of(context).size.width * 0.6,
               height: 24,
             ),
           ),
-          SizedBox(height: 39),
+          const SizedBox(height: 39),
           ListView.builder(
             shrinkWrap: true,
             itemCount: 10,
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(3))),
             ),
           ),
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
           ShimerHomePage.contentText(
               width: MediaQuery.of(context).size.width * 0.40,
               height: 16.7,
@@ -164,7 +164,7 @@ class _HomePageState extends State<HomePage> {
 
     Widget content() {
       return Container(
-        margin: EdgeInsets.only(top: 39),
+        margin: const EdgeInsets.only(top: 39),
         child: Text(
           musicProvider.musics[0].description,
           style: whiteTextStyle.copyWith(
@@ -177,18 +177,18 @@ class _HomePageState extends State<HomePage> {
 
     Widget buildBody(BuildContext context) {
       return Container(
-        margin: EdgeInsets.symmetric(horizontal: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 37),
+            const SizedBox(height: 37),
             header(),
-            SizedBox(height: 26),
+            const SizedBox(height: 26),
             Center(child: titleText(musicProvider.musics[0].name)),
             content(),
-            SizedBox(height: 49),
+            const SizedBox(height: 49),
             titleText("Lainnya"),
-            SizedBox(height: 28),
+            const SizedBox(height: 28),
             // SecondMusikCart(controller, musicProvider.musics),
             StaggeredGridView.countBuilder(
               controller: controller,
@@ -196,8 +196,8 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.vertical,
               staggeredTileBuilder: (integer) =>
                   MediaQuery.of(context).orientation == Orientation.portrait
-                      ? StaggeredTile.count(2, 3)
-                      : StaggeredTile.count(2, 1.4),
+                      ? const StaggeredTile.count(2, 3)
+                      : const StaggeredTile.count(2, 1.4),
               // staggeredTileBuilder: (index) => StaggeredTile.fit(2),
               crossAxisCount: 4,
               itemCount: musicProvider.musics.length,
