@@ -4,13 +4,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:genremusik/model/upload_model.dart';
 
-// typedef void OnUploadProgressCallback(int sentBytes, int totalBytes);
 class UploadService {
-  // OnUploadProgressCallback? onUploadProgressCallback;
-  String baseUrl = 'http://192.168.135.80:8000/api';
-  // var header = {
-  //   "Content-Type": "application/json",
-  // };
+  String baseUrl = 'http://192.168.159.80:8000/api';
+
   int? sent;
   int? total;
   Dio dio = Dio();
@@ -47,6 +43,7 @@ class UploadService {
         //   new Map<String, dynamic>.from(jsonDecode(response.data));
         UploadModel uploadModel =
             UploadModel.fromJson(data['data'] as Map<String, dynamic>);
+        uploadModel.genre;
         print('berhasil upload');
         return uploadModel;
       } else {

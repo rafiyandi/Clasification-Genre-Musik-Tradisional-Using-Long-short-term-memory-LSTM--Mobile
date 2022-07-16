@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                 itemCount: musicProvider.musics[0].galleries.length,
                 itemBuilder: (context, index, realIndex) {
                   final urlImage = musicProvider.musics[0].galleries[index].url;
-                  print("ini index " + urlImage.toString());
+                  // print("ini index " + urlImage.toString());
 
                   return buildImage(urlImage);
                 },

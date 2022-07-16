@@ -29,7 +29,7 @@ class _ClasificationGenreState extends State<ClasificationGenre> {
         isLoading = true;
       });
       if (await uploadProvider.uploadMusik(file: file)) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
             'Upload Berhasil',
             textAlign: TextAlign.center,
