@@ -24,10 +24,14 @@ class ButtonLoading extends StatelessWidget {
         children: [
           Icon(icon, size: 28),
           const SizedBox(width: 16),
-          const CircularProgressIndicator(
-            strokeWidth: 2,
-            valueColor: AlwaysStoppedAnimation(
-              Colors.grey,
+          SizedBox(
+            width: 24,
+            height: 24,
+            child: const CircularProgressIndicator(
+              strokeWidth: 2,
+              valueColor: AlwaysStoppedAnimation(
+                Colors.grey,
+              ),
             ),
           ),
         ],

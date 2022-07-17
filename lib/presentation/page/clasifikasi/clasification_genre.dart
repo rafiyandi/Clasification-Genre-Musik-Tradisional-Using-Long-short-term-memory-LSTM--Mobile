@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:genremusik/provider/upload_provider.dart';
+import 'package:genremusik/shared/theme.dart';
 import 'package:genremusik/widgets/appBar/appbar_title.dart';
 import 'package:genremusik/widgets/button/button_widget.dart';
 import 'package:genremusik/widgets/button/loading_button.dart';
@@ -24,18 +25,60 @@ class _ClasificationGenreState extends State<ClasificationGenre> {
   Widget build(BuildContext context) {
     UploadProvider uploadProvider = Provider.of<UploadProvider>(context);
 
-    handleUpload() async {
+    Future handleUpload() async {
       setState(() {
         isLoading = true;
       });
       if (await uploadProvider.uploadMusik(file: file)) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-            'Upload Berhasil',
-            textAlign: TextAlign.center,
-          ),
-          backgroundColor: Color(0xff6C5ECF),
-        ));
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  backgroundColor: backgroundColor3,
+                  content: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Text(
+                            "Klasifikasi Berhasil",
+                            style: primaryTextStyle.copyWith(
+                                fontSize: 18, fontWeight: semiBold),
+                          ),
+                          SizedBox(height: 20),
+                          Image.asset("assets/icon/icon_success.png",
+                              width: 100),
+                          SizedBox(height: 20),
+                          Text(
+                            uploadProvider.upload.genre
+                                .toString()
+                                .toUpperCase(),
+                            style: primaryTextStyle.copyWith(
+                                fontSize: 18, fontWeight: semiBold),
+                          ),
+                          SizedBox(height: 20),
+                          Container(
+                            width: 154,
+                            height: 44,
+                            child: TextButton(
+                                style: TextButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  backgroundColor: primaryColor,
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  "Oke",
+                                  style: primaryTextStyle,
+                                )),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text(
@@ -76,14 +119,16 @@ class _ClasificationGenreState extends State<ClasificationGenre> {
                 style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
+                    overflow: TextOverflow.ellipsis,
                     color: Colors.white),
               ),
               const SizedBox(height: 48),
               isLoading
                   ? const ButtonLoading(icon: Icons.cloud_upload_outlined)
                   : ButtonWidget(
-                      text: 'Upload File',
+                      text: 'Clasification Music',
                       icon: Icons.cloud_upload_outlined,
+                      // onClicked: handleUpload,
                       onClicked: handleUpload,
                     ),
               const SizedBox(height: 20),

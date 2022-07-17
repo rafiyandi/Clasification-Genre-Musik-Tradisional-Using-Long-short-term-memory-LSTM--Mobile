@@ -36,10 +36,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> getMusik() async {
-    await Provider.of<MusicProvider>(context, listen: false).getMusics();
     setState(() {
       isLoading = true;
     });
+    await Provider.of<MusicProvider>(context, listen: false).getMusics();
     MusicProvider musicProvider = Provider.of(context, listen: false);
 
     await musicProvider.getMusics();
@@ -212,12 +212,14 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    return ListView(
-      controller: controller,
-      children: [
-        appBarTitle("Musik Tradisional"),
-        isLoading ? buildShimerHomePage() : buildBody(context),
-      ],
-    );
+    return isLoading
+        ? buildShimerHomePage()
+        : ListView(
+            controller: controller,
+            children: [
+              appBarTitle("Musik Tradisional"),
+              buildBody(context),
+            ],
+          );
   }
 }
