@@ -28,7 +28,7 @@ class _SplashPageState extends State<SplashPage> {
 
   getInit() async {
     await Provider.of<MusicProvider>(context, listen: false).getMusics();
-    await Provider.of<HasilProvider>(context, listen: false).gethasil();
+    // await Provider.of<HasilProvider>(context, listen: false).gethasil();
 
     Navigator.pushReplacementNamed(context, '/home');
   }

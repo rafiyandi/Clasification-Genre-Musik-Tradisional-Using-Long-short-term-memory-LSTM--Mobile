@@ -33,7 +33,7 @@ class _MainPageState extends State<MainPage> {
         ),
         child: BottomAppBar(
           shape: const CircularNotchedRectangle(),
-          notchMargin: 12,
+          notchMargin: 5,
           clipBehavior: Clip.antiAlias,
           child: BottomNavigationBar(
             backgroundColor: backgroundColor4,
@@ -63,7 +63,7 @@ class _MainPageState extends State<MainPage> {
                 icon: Container(
                   margin: const EdgeInsets.only(top: 20, bottom: 10),
                   child: Image.asset(
-                    "assets/icon/icon_headset.png",
+                    "assets/icon/icon_output.png",
                     width: 20,
                     color: currentIndex == 1
                         ? primaryColor
