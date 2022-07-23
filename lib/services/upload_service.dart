@@ -5,7 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:genremusik/model/upload_model.dart';
 
 class UploadService {
-  String baseUrl = 'http://192.168.159.80:8000/api';
+  String baseUrl = 'http://192.168.98.80:8000/api';
 
   int? sent;
   int? total;
@@ -35,7 +35,7 @@ class UploadService {
         //   print(progress);
         // },
       );
-      print(response.data);
+      // print(response.data);
 
       if (response.statusCode == 200) {
         var data = response.data;

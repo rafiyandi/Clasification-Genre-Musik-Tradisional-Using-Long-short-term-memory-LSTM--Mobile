@@ -95,49 +95,52 @@ class _ClasificationGenreState extends State<ClasificationGenre> {
 
     final fileName = file != null ? basename(file.path) : 'No File Selected';
 
-    return ListView(
-      children: [
-        appBarTitle("KLasifikasi Genre Musik Tradisional"),
-        Container(
-          margin: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              const SizedBox(height: 100),
-              Image.asset(
-                "assets/icon/icon_headset.png",
-                width: 100,
-              ),
-              const SizedBox(height: 100),
-              ButtonWidget(
-                text: 'Select File',
-                icon: Icons.attach_file,
-                onClicked: selectFile,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                fileName,
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    overflow: TextOverflow.ellipsis,
-                    color: Colors.white),
-              ),
-              const SizedBox(height: 48),
-              isLoading
-                  ? const ButtonLoading(icon: Icons.cloud_upload_outlined)
-                  : ButtonWidget(
-                      text: 'Clasification Music',
-                      icon: Icons.cloud_upload_outlined,
-                      // onClicked: handleUpload,
-                      onClicked: handleUpload,
-                    ),
-              const SizedBox(height: 20),
-            ],
-          ),
-        )
+    return Scaffold(
+      backgroundColor: backgroundColor3,
+      body: ListView(
+        children: [
+          appBarTitle("KLasifikasi Genre Musik Tradisional"),
+          Container(
+            margin: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                const SizedBox(height: 100),
+                Image.asset(
+                  "assets/icon/icon_headset.png",
+                  width: 100,
+                ),
+                const SizedBox(height: 100),
+                ButtonWidget(
+                  text: 'Select File',
+                  icon: Icons.attach_file,
+                  onClicked: selectFile,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  fileName,
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      overflow: TextOverflow.ellipsis,
+                      color: Colors.white),
+                ),
+                const SizedBox(height: 48),
+                isLoading
+                    ? const ButtonLoading(icon: Icons.cloud_upload_outlined)
+                    : ButtonWidget(
+                        text: 'Clasification Music',
+                        icon: Icons.cloud_upload_outlined,
+                        // onClicked: handleUpload,
+                        onClicked: handleUpload,
+                      ),
+                const SizedBox(height: 20),
+              ],
+            ),
+          )
 
-        // task != null ? buildUploadStatus(task!) : Container(),
-      ],
+          // task != null ? buildUploadStatus(task!) : Container(),
+        ],
+      ),
     );
   }
 

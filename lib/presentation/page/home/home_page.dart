@@ -40,9 +40,8 @@ class _HomePageState extends State<HomePage> {
       isLoading = true;
     });
     await Provider.of<MusicProvider>(context, listen: false).getMusics();
-    MusicProvider musicProvider = Provider.of(context, listen: false);
-
-    await musicProvider.getMusics();
+    // MusicProvider musicProvider = Provider.of(context, listen: false);
+    // await musicProvider.getMusics();
     setState(() {
       isLoading = false;
     });

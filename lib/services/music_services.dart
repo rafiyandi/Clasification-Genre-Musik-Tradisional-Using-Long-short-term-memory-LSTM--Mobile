@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:genremusik/model/music_model.dart';
 
 class MusicServices {
-  String baseUrl = 'http://192.168.159.80:8000/api';
+  String baseUrl = 'http://192.168.98.80:8000/api';
 
   Dio dio = Dio();
 
@@ -13,7 +13,7 @@ class MusicServices {
         options: Options(headers: {
           "Content-Type": "application/json",
         }));
-    print(response.data);
+    // print(response.data);
 
     if (response.statusCode == 200) {
       List data = response.data['data']['data'];

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:genremusik/presentation/page/clasifikasi/clasification_genre.dart';
+import 'package:genremusik/presentation/page/hasil/hasil_klasifikasi.dart';
 import 'package:genremusik/presentation/page/home/home_page.dart';
 import 'package:genremusik/shared/theme.dart';
 // import 'package:shamo/providers/page_provider.dart';
@@ -15,6 +16,16 @@ class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    Widget cartButton() {
+      return FloatingActionButton(
+        backgroundColor: secondaryColor,
+        onPressed: () {
+          Navigator.pushNamed(context, '/genre');
+        },
+        child: Image.asset("assets/icon/icon_headset_white.png", width: 20),
+      );
+    }
+
     Widget customBottomNav() {
       return ClipRRect(
         borderRadius: const BorderRadius.vertical(
@@ -73,7 +84,7 @@ class _MainPageState extends State<MainPage> {
           return const HomePage();
         case 1:
           // return const ClasifikasiGenre();
-          return ClasificationGenre();
+          return HasilKlasifikasi();
         default:
           return const HomePage();
       }
@@ -83,6 +94,7 @@ class _MainPageState extends State<MainPage> {
       backgroundColor: currentIndex == 0 ? backgroundColor1 : backgroundColor3,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: customBottomNav(),
+      floatingActionButton: cartButton(),
       body: body(),
     );
   }

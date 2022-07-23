@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:genremusik/provider/hasil_provider.dart';
 import 'package:genremusik/provider/music_provider.dart';
 import 'package:genremusik/services/music_services.dart';
 import 'package:genremusik/shared/theme.dart';
@@ -27,13 +28,10 @@ class _SplashPageState extends State<SplashPage> {
 
   getInit() async {
     await Provider.of<MusicProvider>(context, listen: false).getMusics();
+    await Provider.of<HasilProvider>(context, listen: false).gethasil();
+
     Navigator.pushReplacementNamed(context, '/home');
   }
-
-  // getInit() async {
-  //   await Provider.of<ProductProvider>(context, listen: false).getProducts();
-  //   Navigator.pushNamed(context, '/sign-in');
-  // }
 
   @override
   Widget build(BuildContext context) {
