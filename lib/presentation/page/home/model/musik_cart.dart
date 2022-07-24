@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:genremusik/model/music_model.dart';
 import 'package:genremusik/presentation/page/home/detail_musik_page.dart';
+import 'package:genremusik/presentation/page/home/model/image_not_found.dart';
 import 'package:genremusik/shared/theme.dart';
 
 class MusikCart extends StatelessWidget {
@@ -33,20 +34,15 @@ class MusikCart extends StatelessWidget {
                 topLeft: Radius.circular(15),
                 topRight: Radius.circular(15),
               ),
-              // child: Image.asset(
-              //   musik.galleries[0].url,
-              //   width: double.infinity,
-              //   height: 150,
-              //   fit: BoxFit.cover,
-              //   alignment: Alignment.topCenter,
-              // ),
-              child: CachedNetworkImage(
-                imageUrl: musik.galleries[0].url,
-                width: double.infinity,
-                height: 150,
-                fit: BoxFit.cover,
-                alignment: Alignment.topCenter,
-              ),
+              child: musik.galleries.isEmpty
+                  ? imageNotFound(150)
+                  : CachedNetworkImage(
+                      imageUrl: musik.galleries[0].url,
+                      width: double.infinity,
+                      height: 150,
+                      fit: BoxFit.cover,
+                      alignment: Alignment.topCenter,
+                    ),
             ),
             const SizedBox(height: 12),
             Container(

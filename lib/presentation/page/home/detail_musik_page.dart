@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:genremusik/model/music_model.dart';
+import 'package:genremusik/presentation/page/home/model/image_not_found.dart';
 import 'package:genremusik/shared/theme.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -133,28 +134,30 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CarouselSlider.builder(
-                options: CarouselOptions(
-                  height: 400,
-                  viewportFraction: 1,
-                  // enlargeCenterPage: true,
-                  autoPlay: true,
-                  // enlargeStrategy: CenterPageEnlargeStrategy.height,
-                  enableInfiniteScroll: true,
-                  initialPage: 0,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      currentIndex = index;
-                    });
-                  },
-                ),
-                itemCount: widget.music.galleries.length,
-                itemBuilder: (context, index, realIndex) {
-                  final urlImage = widget.music.galleries[index].url;
+              widget.music.galleries.isEmpty
+                  ? imageNotFound(400)
+                  : CarouselSlider.builder(
+                      options: CarouselOptions(
+                        height: 400,
+                        viewportFraction: 1,
+                        // enlargeCenterPage: true,
+                        autoPlay: true,
+                        // enlargeStrategy: CenterPageEnlargeStrategy.height,
+                        enableInfiniteScroll: true,
+                        initialPage: 0,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            currentIndex = index;
+                          });
+                        },
+                      ),
+                      itemCount: widget.music.galleries.length,
+                      itemBuilder: (context, index, realIndex) {
+                        final urlImage = widget.music.galleries[index].url;
 
-                  return buildImage(urlImage, index);
-                },
-              ),
+                        return buildImage(urlImage, index);
+                      },
+                    ),
             ],
           ),
           IconButton(

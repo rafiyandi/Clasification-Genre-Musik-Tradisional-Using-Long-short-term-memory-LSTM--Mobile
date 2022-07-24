@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:genremusik/model/music_model.dart';
+import 'package:genremusik/presentation/page/home/model/image_not_found.dart';
 import 'package:genremusik/presentation/page/home/model/musik_cart.dart';
 import 'package:genremusik/presentation/page/home/model/shimer/shimer_home_page.dart';
 import 'package:genremusik/provider/music_provider.dart';
@@ -50,6 +52,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     MusicProvider musicProvider = Provider.of<MusicProvider>(context);
+    // MusicModel? music;
+
+    Widget notFoundBanner() {
+      return Image.asset(
+        "assets/image/image_tarian2.png",
+        width: double.infinity,
+        height: 200,
+        alignment: Alignment.topLeft,
+        fit: BoxFit.cover,
+      );
+    }
 
     Widget buildShimerHomePage() {
       return Column(
@@ -111,44 +124,38 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    Widget buildImageNotFound(
-      String urlImage,
-    ) {
-      return Image.asset(
-        urlImage,
-        fit: BoxFit.cover,
-      );
-    }
-
     Widget header() {
       // int index = -1;
       return Stack(
         children: [
           Column(
             children: [
-              CarouselSlider.builder(
-                options: CarouselOptions(
-                  height: 200,
-                  viewportFraction: 1,
-                  // enlargeCenterPage: true,
-                  autoPlay: true,
-                  // enlargeStrategy: CenterPageEnlargeStrategy.height,
-                  enableInfiniteScroll: true,
-                  initialPage: 0,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      currentIndex = index;
-                    });
-                  },
-                ),
-                itemCount: musicProvider.musics[0].galleries.length,
-                itemBuilder: (context, index, realIndex) {
-                  final urlImage = musicProvider.musics[0].galleries[index].url;
-                  // print("ini index " + urlImage.toString());
+              musicProvider.musics[0].galleries.isEmpty
+                  ? notFoundBanner()
+                  : CarouselSlider.builder(
+                      options: CarouselOptions(
+                        height: 200,
+                        viewportFraction: 1,
+                        // enlargeCenterPage: true,
+                        autoPlay: true,
+                        // enlargeStrategy: CenterPageEnlargeStrategy.height,
+                        enableInfiniteScroll: true,
+                        initialPage: 0,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            currentIndex = index;
+                          });
+                        },
+                      ),
+                      itemCount: musicProvider.musics[0].galleries.length,
+                      itemBuilder: (context, index, realIndex) {
+                        final urlImage =
+                            musicProvider.musics[0].galleries[index].url;
+                        // print("ini index " + urlImage.toString());
 
-                  return buildImage(urlImage);
-                },
-              ),
+                        return buildImage(urlImage);
+                      },
+                    ),
             ],
           ),
           Center(
@@ -211,14 +218,22 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    return isLoading
-        ? buildShimerHomePage()
-        : ListView(
-            controller: controller,
-            children: [
-              appBarTitle("Musik Tradisional"),
-              buildBody(context),
-            ],
-          );
+    return RefreshIndicator(
+      onRefresh: getMusik,
+      backgroundColor: secondaryTextColor,
+      triggerMode: RefreshIndicatorTriggerMode.onEdge,
+      strokeWidth: 3,
+      color: whiteColor,
+      displacement: 20,
+      child: isLoading
+          ? buildShimerHomePage()
+          : ListView(
+              controller: controller,
+              children: [
+                appBarTitle("Musik Tradisional"),
+                buildBody(context),
+              ],
+            ),
+    );
   }
 }

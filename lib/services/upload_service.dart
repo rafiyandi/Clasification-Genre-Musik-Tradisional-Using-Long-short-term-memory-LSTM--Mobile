@@ -3,9 +3,10 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:genremusik/model/upload_model.dart';
+import 'package:genremusik/utils/constants.dart' as constants;
 
 class UploadService {
-  String baseUrl = 'http://192.168.35.80:8000/api';
+  String endpoint = "${constants.Server_APi}/upload";
 
   int? sent;
   int? total;
@@ -18,7 +19,7 @@ class UploadService {
     var progress;
 
     try {
-      var url = '$baseUrl/upload';
+      var url = endpoint;
       var formData = FormData.fromMap({
         'file': await MultipartFile.fromFile(file.path, filename: fileName),
       });

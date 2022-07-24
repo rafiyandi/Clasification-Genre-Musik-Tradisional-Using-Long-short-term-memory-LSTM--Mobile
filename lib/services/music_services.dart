@@ -1,13 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:genremusik/model/music_model.dart';
+import 'package:genremusik/utils/constants.dart' as constants;
 
 class MusicServices {
-  String baseUrl = 'http://192.168.35.80:8000/api';
+  // String endpoint = constants.Server_APi;
+  String endpoint = "${constants.Server_APi}/music";
+
+  // String baseUrl = 'http://192.168.35.80:8000/api';
 
   Dio dio = Dio();
 
   Future<List<MusicModel>> getMusics() async {
-    var url = '$baseUrl/music';
+    var url = endpoint;
 
     var response = await dio.get(url,
         options: Options(headers: {
