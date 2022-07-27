@@ -49,6 +49,13 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  // final images = [
+  //   "assets/image/image_biola.png",
+  //   "assets/image/image_gambang.png",
+  //   "assets/image/image_tamborin.png",
+  //   "assets/image/image_ukulele.png",
+  // ];
+
   @override
   Widget build(BuildContext context) {
     MusicProvider musicProvider = Provider.of<MusicProvider>(context);
