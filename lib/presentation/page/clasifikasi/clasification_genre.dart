@@ -7,6 +7,7 @@ import 'package:genremusik/shared/theme.dart';
 import 'package:genremusik/widgets/appBar/appbar_title.dart';
 import 'package:genremusik/widgets/button/button_widget.dart';
 import 'package:genremusik/widgets/button/loading_button.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:path/path.dart';
 
@@ -32,53 +33,123 @@ class _ClasificationGenreState extends State<ClasificationGenre> {
       if (await uploadProvider.uploadMusik(file: file)) {
         showDialog(
             context: context,
-            builder: (context) => AlertDialog(
-                  backgroundColor: backgroundColor3,
-                  content: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Text(
-                            "Klasifikasi Berhasil",
-                            style: primaryTextStyle.copyWith(
-                                fontSize: 18, fontWeight: semiBold),
-                          ),
-                          SizedBox(height: 20),
-                          Image.asset("assets/icon/icon_success.png",
-                              width: 100),
-                          SizedBox(height: 20),
-                          Text(
-                            uploadProvider.upload.genre
-                                .toString()
-                                .toUpperCase(),
-                            style: primaryTextStyle.copyWith(
-                                fontSize: 18, fontWeight: semiBold),
-                          ),
-                          SizedBox(height: 20),
-                          Container(
-                            width: 154,
-                            height: 44,
-                            child: TextButton(
-                                style: TextButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  backgroundColor: primaryColor,
+            builder: (context) => uploadProvider.upload.presentase! < 50
+                ? AlertDialog(
+                    backgroundColor: backgroundColor3,
+                    content: Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 20),
+                        child: Text(
+                          "Musik Tidak Dikenali",
+                          style: primaryTextStyle.copyWith(
+                              fontSize: 18, fontWeight: semiBold),
+                        )),
+                  )
+                : AlertDialog(
+                    backgroundColor: backgroundColor3,
+                    content: Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 20),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Text(
+                              "Klasifikasi Berhasil",
+                              style: primaryTextStyle.copyWith(
+                                  fontSize: 18, fontWeight: semiBold),
+                            ),
+                            const SizedBox(height: 30),
+                            // Image.asset("assets/icon/icon_success.png", width: 100),
+                            CircularPercentIndicator(
+                              radius: 70,
+                              lineWidth: 15.0,
+                              percent:
+                                  uploadProvider.upload.presentase!.toDouble() /
+                                      100,
+                              animation: true,
+                              animationDuration: 1000,
+                              center: Text(
+                                "${uploadProvider.upload.presentase!.toString()} %",
+                                style: primaryTextStyle.copyWith(
+                                    fontSize: 18, fontWeight: semiBold),
+                              ),
+                              progressColor: primaryColor,
+                              backgroundColor: secondaryTextColor,
+                            ),
+                            SizedBox(height: 20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      width: 13,
+                                      height: 13,
+                                      decoration: BoxDecoration(
+                                        color: secondaryTextColor,
+                                        shape: BoxShape.circle,
+                                      ),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      "Tidak Cocok",
+                                      style: primaryTextStyle.copyWith(
+                                          fontSize: 12, fontWeight: regular),
+                                    ),
+                                  ],
                                 ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text(
-                                  "Oke",
-                                  style: primaryTextStyle,
-                                )),
-                          ),
-                        ],
+                                Row(
+                                  children: [
+                                    Container(
+                                      width: 13,
+                                      height: 13,
+                                      decoration: BoxDecoration(
+                                        color: primaryColor,
+                                        shape: BoxShape.circle,
+                                      ),
+                                    ),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      "Cocok",
+                                      style: primaryTextStyle.copyWith(
+                                          fontSize: 12, fontWeight: regular),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 30),
+                            Text(
+                              uploadProvider.upload.genre
+                                  .toString()
+                                  .toUpperCase(),
+                              style: primaryTextStyle.copyWith(
+                                  fontSize: 18, fontWeight: semiBold),
+                            ),
+                            const SizedBox(height: 30),
+                            Container(
+                              width: 154,
+                              height: 44,
+                              child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                    backgroundColor: primaryColor,
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    "Oke",
+                                    style: primaryTextStyle,
+                                  )),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ));
+                  ));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text(

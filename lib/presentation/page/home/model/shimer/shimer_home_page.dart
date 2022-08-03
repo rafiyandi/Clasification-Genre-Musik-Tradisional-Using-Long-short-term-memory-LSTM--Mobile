@@ -40,8 +40,8 @@ class ShimerHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Color.fromARGB(255, 46, 43, 61),
-      highlightColor: Color.fromARGB(255, 62, 60, 72),
+      baseColor: const Color.fromARGB(255, 46, 43, 61),
+      highlightColor: const Color.fromARGB(255, 62, 60, 72),
       child: Container(
         width: width,
         height: height,

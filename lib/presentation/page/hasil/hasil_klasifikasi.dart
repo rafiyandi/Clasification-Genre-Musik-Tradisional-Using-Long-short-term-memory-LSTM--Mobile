@@ -53,7 +53,7 @@ class _HasilKlasifikasiState extends State<HasilKlasifikasi> {
               ),
             ],
             leading: IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
                 onPressed: () => Navigator.pop(context)),
             title: Text(
               "Hasil Klasifikasi",
@@ -72,7 +72,7 @@ class _HasilKlasifikasiState extends State<HasilKlasifikasi> {
           color: whiteColor,
           displacement: 20,
           child: isLoading
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: const CircularProgressIndicator())
               : OutputKlasifikasi(hasilProvider: hasilProvider),
         ));
   }

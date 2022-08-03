@@ -16,7 +16,7 @@ class UploadService {
     required File file,
   }) async {
     String fileName = file.path.split('/').last;
-    var progress;
+    // var progress;
 
     try {
       var url = endpoint;

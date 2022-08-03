@@ -60,7 +60,7 @@ class _DetailMusicPageState extends State<DetailMusicPage> {
     Widget buildImage(String urlImage, int index) {
       return Image.network(
         urlImage,
-        fit: BoxFit.fill,
+        fit: BoxFit.cover,
       );
     }
 

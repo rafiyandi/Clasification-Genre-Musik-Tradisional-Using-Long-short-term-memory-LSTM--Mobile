@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:genremusik/model/music_model.dart';
-import 'package:genremusik/presentation/page/home/model/image_not_found.dart';
 import 'package:genremusik/presentation/page/home/model/musik_cart.dart';
 import 'package:genremusik/presentation/page/home/model/shimer/shimer_home_page.dart';
 import 'package:genremusik/provider/music_provider.dart';
@@ -179,7 +177,7 @@ class _HomePageState extends State<HomePage> {
       return Container(
         margin: const EdgeInsets.only(top: 39),
         child: Text(
-          musicProvider.musics[0].description,
+          "Musik tradisional adalah musik yang telah hidup di masyarakat secara turun temurun dan telah dibudidayakan sebagai sarana hiburan. Musik tradisional sering digunakan dalam upacara adat dan tarian daerah. ",
           style: whiteTextStyle.copyWith(
             fontSize: 12,
           ),

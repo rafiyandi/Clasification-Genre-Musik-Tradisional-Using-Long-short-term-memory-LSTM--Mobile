@@ -16,7 +16,6 @@ Color backgroundColor6 = const Color(0xffECEDEF);
 Color primaryTextColor = const Color(0xffF1F0F2);
 Color secondaryTextColor = const Color(0xff999999);
 Color subtitleColor = const Color(0xff504F5E);
-Color transparentColor = Colors.transparent;
 Color blackColor = const Color(0xff2E2E2E);
 Color whiteColor = const Color(0xffffffff);
 
